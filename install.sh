@@ -11,7 +11,7 @@ SCRIPT_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 REPODIR="${SCRIPT_ROOT}/AOS-llvm"
 LLVM_INSTALL="${SCRIPT_ROOT}/llvm-install"
-BUILD_DIR="${SCRIPT_ROOT}/llvm-build"
+BUILD_DIR="${SCRIPT_ROOT}/aos-build"
 LINARO_RELEASE_URL="https://releases.linaro.org/components/toolchain/binaries/7.3-2018.05/aarch64-linux-gnu/"
 LINARO_SYSROOT_FILENAME="sysroot-glibc-linaro-2.25-2018.05-aarch64-linux-gnu.tar.xz"
 LINARO_SYSROOT_URL="${LINARO_RELEASE_URL}/${LINARO_SYSROOT_FILENAME}"
