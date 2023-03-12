@@ -10,15 +10,15 @@ set -ue
 SCRIPT_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 REPODIR="${SCRIPT_ROOT}/AOS-llvm"
-LLVM_INSTALL="${SCRIPT_ROOT}/aos-install"
-BUILD_DIR="${SCRIPT_ROOT}/aos-build"
+LLVM_INSTALL="${SCRIPT_ROOT}/llvm-install"
+BUILD_DIR="${SCRIPT_ROOT}/llvm-build"
 LINARO_RELEASE_URL="https://releases.linaro.org/components/toolchain/binaries/7.3-2018.05/aarch64-linux-gnu/"
 LINARO_SYSROOT_FILENAME="sysroot-glibc-linaro-2.25-2018.05-aarch64-linux-gnu.tar.xz"
 LINARO_SYSROOT_URL="${LINARO_RELEASE_URL}/${LINARO_SYSROOT_FILENAME}"
 LINARO_GCC_FILENAME="gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz"
 LINARO_GCC_URL="${LINARO_RELEASE_URL}/${LINARO_GCC_FILENAME}"
 
-EXAMPLE_DIR="${SCRIPT_ROOT}/example"
+#EXAMPLE_DIR="${SCRIPT_ROOT}/example"
 
 declare -a pkg_dependencies=(
 git cmake ccache libncurses5-dev swig libedit-dev
@@ -65,10 +65,10 @@ dependencies() {
 }
 
 compiler() {
-    echo "Clonging AOS LLVM..."
+    echo "Clonging LLVM..."
     git clone https://github.com/yonghaekim/AOS-llvm "$REPODIR"
 
-    echo "Compiling LLVM + PACStack..."
+    echo "Compiling LLVM..."
     mkdir -p "$BUILD_DIR"
     cd "$BUILD_DIR"
     cmake -G Ninja \
@@ -103,15 +103,8 @@ install_gcc() {
     tar xJf "${LINARO_GCC_FILENAME}"
 }
 
-compile_example() {
-    echo "Compiling example hello_world sample..."
-    cd "${EXAMPLE_DIR}"
-    make
-}
-
 dependencies
 compiler
 install_sysroot
 install_gcc
-compile_example
 
