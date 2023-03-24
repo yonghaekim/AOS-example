@@ -16,5 +16,6 @@ cmake -G Ninja \
 		-DLLVM_ENABLE_DOXYGEN=Off               \
 		-DLLVM_ENABLE_RTTI=Off                  \
 		-DLLVM_ENABLE_PROJECTS="clang"          \
+		-DLLVM_DEFAULT_TARGET_TRIPLE="aarch64-unknown-linux-gnu" \
 		"$REPODIR/llvm"
 ninja
